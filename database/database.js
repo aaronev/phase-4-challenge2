@@ -14,7 +14,7 @@ module.exports = class DataBaseGenericTableFunctions {
     for (let i = 1; i <= this.columns.length; i++) {
       colmns.push('$'+ i)
     }
-    return col.join()
+    return colmns.join()
   } 
 
   addRow(valuesAsArray) {

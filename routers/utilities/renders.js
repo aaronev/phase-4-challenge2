@@ -37,7 +37,7 @@ renders.albumsPage = (req, res, next) => {
     .then( users => {
       getReviewsTable.byAlbumID(req.params.id)
       .then( reviews => {
-        res.render('albums', { albums, reviews, users })
+        res.render('album-info', { albums, reviews, users })
       })
     })
   }).catch(next)

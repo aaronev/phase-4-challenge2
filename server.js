@@ -31,7 +31,7 @@ app.use((req, res) => {
   res.render('./errors/not-found') 
 })
 
-const port = process.env.PORT || 3002
+const port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}...`)
 })
