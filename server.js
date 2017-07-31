@@ -17,6 +17,8 @@ app.use(flash())
 
 app.use((req, res, next) => {
   res.locals.userSess = req.user
+  res.locals.errorSignUp = req.flash('errorSignUp')
+  res.locals.errorLogin = req.flash('errorLogin') 
   next()
 })
 

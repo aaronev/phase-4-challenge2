@@ -110,6 +110,14 @@ body {
   overflow-x: hidden;
 }
 
+.website-title {
+  position: absolute;
+  width: 100%;
+  font-size: 50px;
+  color: gray;
+  top: 25px;
+}
+
 .homepage-image {
   width: 275px;
   position: relative;

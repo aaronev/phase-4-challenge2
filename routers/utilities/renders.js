@@ -4,20 +4,17 @@ const getUsersTable = require('../../domain/users')
 
 const renders = {}
 
-renders.signUpPage = (req, res) => {
-  res.render('sign-up', { 
-    errorSignUp: req.flash('errorSignUp')
-  })
+renders.signUpPage = (req, res) => { 
+  res.render('sign-up') 
 }
-
-renders.signInPage = (req, res) => {
-  res.render('sign-in', { 
-    errorLogin: req.flash('errorLogin') 
-  })
+renders.signInPage = (req, res) => { 
+  res.render('sign-in') 
 }
 
 renders.homePage = (req, res, next) => {
-  getAlbumsTable.all()
+  req.user 
+  ? res.redirect(`/users/${req.user.id}`) 
+  : getAlbumsTable.all()
   .then( albums => {
     getUsersTable.all()
     .then( users => {

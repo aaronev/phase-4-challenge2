@@ -6,7 +6,6 @@
 
   <% include ./lists/albums %>
 
-  <% if (userSess) { %>
     <% albums.forEach(function(album) { %>
         <div class="add-review-buttons">
           <button class="open-review-button" onclick="showAddForm()">Add Review</button>
@@ -19,7 +18,6 @@
           </form>
         </div>
      <% }) %>
-  <% } %>
 
   <h2>Reviews</h2>
   <div class="albums-page-reviews">

@@ -44,7 +44,7 @@ deletes.review = (req, res, next) => {
   ? res.redirect('/sign-in')
   : getReviewsTable.toDelete(req.params.id)
   .then( deletedReview => {
-    if(deletedReview) {
+    if(!deletedReview) {
     res.redirect(`/users/${req.user.id}`)
     }
   }).catch(next)
