@@ -15,9 +15,7 @@ authenticates.LocalStrategy = passport.authenticate('local', {
 
 adds.newUser = (req, res) => {
   const {name, email, password} = req.body
-  ! req.user
-  ? res.redirect('/sign-in')
-  : getUsersTable.byEmail(email)
+  getUsersTable.byEmail(email)
   .then(foundEmail => {
     if (foundEmail) {
       req.flash('errorSignUp', 'Email already exist!')
@@ -30,7 +28,9 @@ adds.newUser = (req, res) => {
 }
 
 adds.newReview = (req, res, next) => {
-  getReviewsTable.toAdd(
+  ! req.user
+  ? res.redirect('/sign-in')
+  : getReviewsTable.toAdd(
     req.user.id, 
     req.params.id, 
     req.body.review
@@ -51,5 +51,4 @@ deletes.review = (req, res, next) => {
 }
 
 
-module.exports = {adds, deletes}
-module.exports = authenticates
+module.exports = {adds, deletes, authenticates}
