@@ -1,18 +1,33 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Vinyl : <%= album.title %></title>
-  <link rel="stylesheet" type="text/css" href="/style.css">
-  <script type="text/javascript" src="/script.js"></script>
-</head>
-<body>
 
-  <h1><%= album.title %></h1>
-  <em>by <%= album.artist %></em>
+<% include ./partials/header %>
+
+<div class="albums-page">
+
+  <% include ./lists/albums %>
+
+  <% if (userSess) { %>
+    <% albums.forEach(function(album) { %>
+        <div class="add-review-buttons">
+          <button class="open-review-button" onclick="showAddForm()">Add Review</button>
+          <button class="close-review-button" onclick="hideAddForm()">Cancel</button>
+        </div>
+        <div class="add-review-form">
+          <form  method="post" action="/albums/<%=album.id%>">
+            <textarea class="border" name="review" required></textarea>
+            <input type="submit" value="Post"/>
+          </form>
+        </div>
+     <% }) %>
+  <% } %>
 
   <h2>Reviews</h2>
+  <div class="albums-page-reviews">
+    <div class="albums-reviews">
+      <% include ./lists/reviews %>
+    </div>
+  </div>
 
-  <!-- TODO: implement album reviews -->
+</div>
 
-</body>
-</html>
+<% include ./partials/footer %>
