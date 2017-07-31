@@ -23,7 +23,7 @@ renders.homePage = (req, res, next) => {
     .then( users => {
       getReviewsTable.byLatestThree()
       .then( reviews => {
-        res.render('home', {albums, reviews, users})
+        res.render('index', {albums, reviews, users})
       })
     })
   }).catch(next)
