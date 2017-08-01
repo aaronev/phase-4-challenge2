@@ -1,42 +1,37 @@
 const express = require('express')
+const passport = require('./config/authentication')
+const session = require('express-session')
 const bodyParser = require('body-parser')
-const database = require('./database')
+const flash = require('connect-flash')
 const app = express()
 
 require('ejs')
-app.set('view engine', 'ejs');
-
+app.set('view engine', 'ejs')
 app.use(express.static('public'))
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(session({secret: 'secret'}))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash())
 
-app.get('/', (request, response) => {
-  database.getAlbums((error, albums) => {
-    if (error) {
-      response.status(500).render('error', { error: error })
-    } else {
-      response.render('index', { albums: albums })
-    }
-  })
+app.use((req, res, next) => {
+  res.locals.userSess = req.user
+  next()
 })
 
-app.get('/albums/:albumID', (request, response) => {
-  const albumID = request.params.albumID
+app.use('/', require('./routers'))
 
-  database.getAlbumsByID(albumID, (error, albums) => {
-    if (error) {
-      response.status(500).render('error', { error: error })
-    } else {
-      const album = albums[0]
-      response.render('album', { album: album })
-    }
-  })
+app.get('/sign-out', (req, res) => { 
+  req.logout()
+  res.redirect('/') 
 })
 
-app.use((request, response) => {
-  response.status(404).render('not_found')
+app.use((req, res) => { 
+  res.render('./errors/not-found') 
 })
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3002
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}...`)
 })
