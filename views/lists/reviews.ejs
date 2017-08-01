@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<div class="list-reviews">
+  
+  <% reviews.forEach(function(review) { %>
+     <% albums.forEach(function(album) { %>
+        <% if (album.id === review.album_id) { %>
+          
+          <h4><a href="/albums/<%= album.id %>"><%= album.title %></a></h4>
+          
+          <% if (userSess) { %>
+            <% if (userSess.id === review.user_id) { %>
+              
+              <img class="float-right" onclick="confirmDelete(<%=review.id%>)" width=30px style="cursor: pointer" src="/img/trash.png"/>
+            
+            <% } %>
+          <% } %>
+          
+          <span><%= album.artist %></span>
+        
+        <% } %>
+      <% }) %>
+    
+    <h6 class="text-right"><%= review.timestamp%></h6>
+    <p  class="text-justify"><%= review.review%></p>
+    
+    <% users.forEach(function(user) { %>
+      <% if (user.id === review.user_id) {%>
+        
+        <h5 class="text-right"><a href="/users/<%= review.user_id %>">By: <%= user.name %></a></h5>
+
+      <% } %>
+    <% }) %>
+  <% }) %>
+  
+</div>
