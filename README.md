@@ -26,16 +26,17 @@ The app uses Express file structure, and includes SQL files to set up the schema
 ### MVC
 
 ```
-README.md           # you are here
-server.js           # web server
-package.json        # npm standard
-/configurations		# folder is for configurations that applies throughout the codebase
-authentication.js	# file within configuration that is configured		
-/database			# folder is for database connection and queries
-database.js 		# file within database for connections and queries 
-schema.sql 			# file within database that shows all the columns of each tables
-seed.sql          	# file within database that seed the ablums, users, and reviews data
-/domain 			# folder is for abstract functions 
-/public				# folder is static and used for image files, css, and vanilla js
-/views              # folder renders get method pages layouts and information as ejs html template
+configurations			# folder is for configurations that applies throughout the codebase
+- authentication.js		# file within configuration that is configured
+database				# folder is for database connection and queries
+- database.js 			# file within database for connections and queries 
+- schema.sql 			# file within database that shows all the columns of each tables
+- seed.sql          	# file within database that seed the ablums, users, and reviews data
+domain 					# folder is for abstract functions 
+public					# static and used for image files, css, and vanilla js
+views              		# renders get method pages layouts and information as ejs html template
+
+README.md           	# you are here
+package.json        	# npm standard
+server.js           	# web server
 ```
