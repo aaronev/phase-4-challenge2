@@ -7,20 +7,21 @@ const renders = {}
 renders.signUpPage = (req, res) => { 
   res.render('sign-up') 
 }
+
 renders.signInPage = (req, res) => { 
-  res.render('sign-in') 
+  req.user
+  ? res.redirect(`/users/${req.user.id}`)
+  : res.render('sign-in')
 }
 
 renders.homePage = (req, res, next) => {
-  req.user 
-  ? res.redirect(`/users/${req.user.id}`) 
-  : getAlbumsTable.all()
+  getAlbumsTable.all()
   .then( albums => {
     getUsersTable.all()
     .then( users => {
       getReviewsTable.byLatestThree()
       .then( reviews => {
-        res.render('index', {albums, reviews, users})
+        res.render('index', { albums, reviews, users })
       })
     })
   }).catch(next)

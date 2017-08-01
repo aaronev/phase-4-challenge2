@@ -2,28 +2,27 @@
 
 <% include ./partials/header %>
 
-  <div class="hompage">
-    <% if (userSess) { %>
-      <a href="/users/<%=userSess.id%>">
-    <% } else {%>
-      <a href="/">
-    <% } %>
-      <img class="homepage-image" src="/img/colorful-vinyl.jpg"/>
-    </a>
-    <h1 class="website-title">Vinyl</h1>
+<div class="hompage">
+  <% if (userSess) { %>
+    <a href="/users/<%=userSess.id%>">
+  <% } else {%>
+    <a href="/">
+  <% } %>
+    <img class="homepage-image" src="/img/colorful-vinyl.jpg"/>
+  </a>
+  <h1 class="website-title">Vinyl</h1>
 
-    <div class="container">
-      <div class="homepage-albums">
-        <h2>Records</h2>
-        <% include ./lists/albums %>
-      </div>
-      
-      <div class="homepage-reviews">
-        <h2>Recent Reviews</h2>
-        <% include ./lists/reviews %>
-      </div>
+  <div class="container">
+    <div class="homepage-albums">
+      <h2>Records</h2>
+      <% include ./lists/albums %>
     </div>
-  
+    
+    <div class="homepage-reviews">
+      <h2>Recent Reviews</h2>
+      <% include ./lists/reviews %>
+    </div>
   </div>
+</div>
 
 <% include ./partials/footer %>

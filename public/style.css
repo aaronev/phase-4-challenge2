@@ -166,14 +166,14 @@ body {
 .add-review-form {
   position: relative;
   text-align: center;
-  width: auto;
+  width: 100%;
 }
 
 .add-review-form textarea {
   resize: none;
   position: relative;
-  width: 100%;
-  height: 200px;
+  width: 80%;
+  height: 300px;
 }
 
 .sign-in-page, .sign-up-page {

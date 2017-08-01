@@ -3,29 +3,29 @@
 <% include ./partials/header %>
 
 <div class="albums-page">
-
   <% include ./lists/albums %>
 
-    <% albums.forEach(function(album) { %>
-        <div class="add-review-buttons">
-          <button class="open-review-button" onclick="showAddForm()">Add Review</button>
-          <button class="close-review-button" onclick="hideAddForm()">Cancel</button>
-        </div>
-        <div class="add-review-form">
-          <form  method="post" action="/albums/<%=album.id%>">
-            <textarea class="border" name="review" required></textarea>
-            <input type="submit" value="Post"/>
-          </form>
-        </div>
-     <% }) %>
+  <div class="add-review-buttons">
+    <button class="open-review-button" onclick="showAddForm()">Add Review</button>
+    <button class="close-review-button" onclick="hideAddForm()">Cancel</button>
+  </div>
 
-  <h2>Reviews</h2>
+  <% albums.forEach(function(album) { %>
+    <div class="add-review-form">
+      <h2>New review for <%= album.title%></h2>
+      <form  method="post" action="/albums/<%=album.id%>">
+        <textarea class="border" name="review" required></textarea>
+        <br><input type="submit" value="Post"/>
+      </form>
+    </div>  
+  <% }) %>
+
   <div class="albums-page-reviews">
+    <h2>Reviews</h2>
     <div class="albums-reviews">
       <% include ./lists/reviews %>
     </div>
   </div>
-
 </div>
 
 <% include ./partials/footer %>

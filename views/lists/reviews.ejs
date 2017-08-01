@@ -10,9 +10,7 @@
           
           <% if (userSess) { %>
             <% if (userSess.id === review.user_id) { %>
-              
               <img class="float-right" onclick="confirmDelete(<%=review.id%>)" width=30px style="cursor: pointer" src="/img/trash.png"/>
-            
             <% } %>
           <% } %>
           
@@ -26,9 +24,7 @@
     
     <% users.forEach(function(user) { %>
       <% if (user.id === review.user_id) {%>
-        
         <h5 class="text-right"><a href="/users/<%= review.user_id %>">By: <%= user.name %></a></h5>
-
       <% } %>
     <% }) %>
   <% }) %>
