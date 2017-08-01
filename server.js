@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 
 app.use('/', require('./routers'))
 
-app.get('/sign-out', (req, res) => { 
+app.use('/sign-out', (req, res) => { 
   req.logout()
   res.redirect('/') 
 })
