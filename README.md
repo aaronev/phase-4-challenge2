@@ -15,8 +15,8 @@ Use the following commands to set up and seed the PSQL database:
 ### Set Up Server
 Use the following commands to set up the server:
 ```
-1. `$ npm install` 			: Installs all dependencies
-2. `$ npm start`			: Starts the server at http://localhost:3000
+1. `$ npm install`	: Installs all dependencies
+2. `$ npm start`	: Starts the server at http://localhost:3000
 ```
 
 Once server is running sign up and the sign in.
@@ -28,16 +28,16 @@ The app uses Express file structure, and includes SQL files to set up the schema
 ### MVC
 
 ```
-README.md          		: you are here
-package.json       		: npm standard
-server.js          		: web server
-configurations			: folder is for configurations that applies throughout the codebase
-authentication.js		: file within configuration that is configured
-database				: folder is for database connection and queries
-database.js 			: file within database for connections and queries 
-schema.sql 				: file within database that shows all the columns of each tables
-seed.sql          		: file within database that seed the ablums, users, and reviews data
-domain 					: folder is for abstract functions 
-public					: static and used for image files, css, and vanilla js
-views              		: renders get method pages layouts and information as ejs html template
+README.md 	: you are here
+package.json 	: npm standard
+server.js 	: web server
+configurations 	: folder is for configurations that applies throughout the codebase
+authentication.js 	: file within configuration that is configured
+database 	: folder is for database connection and queries
+database.js 	: file within database for connections and queries 
+schema.sql 	: file within database that shows all the columns of each tables
+seed.sql 	: file within database that seed the ablums, users, and reviews data
+domain 	: folder is for abstract functions 
+public 	: static and used for image files, css, and vanilla js
+views 	: renders get method pages layouts and information as ejs html template
 ```
