@@ -19,7 +19,7 @@ Use the following commands to set up the server:
 2. `$ npm start`	: Starts the server at http://localhost:3000
 ```
 
-Once server is running sign up and the sign in.
+Once server is running sign up and then sign in.
 
 Run `$ npm run` to see the list of commands available. To see what each command does, look at `package.json`.
 
@@ -41,5 +41,4 @@ seed.sql 		# - file within database that seed the ablums, users, and reviews dat
 domain/ 		# folder is for abstract functions 
 public/ 		# folder is static and used for image files, css, and vanilla js
 views/ 			# folder renders get method pages layouts and information as ejs html template
-```
 ```
