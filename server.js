@@ -17,12 +17,14 @@ app.use(flash())
 
 app.use((req, res, next) => {
   res.locals.userSess = req.user
+  res.locals.errorSignUp = req.flash('errorSignUp')
+  res.locals.errorLogin = req.flash('errorLogin') 
   next()
 })
 
 app.use('/', require('./routers'))
 
-app.get('/sign-out', (req, res) => { 
+app.use('/sign-out', (req, res) => { 
   req.logout()
   res.redirect('/') 
 })
@@ -31,7 +33,7 @@ app.use((req, res) => {
   res.render('./errors/not-found') 
 })
 
-const port = process.env.PORT || 3002
+const port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}...`)
 })

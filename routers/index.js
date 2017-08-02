@@ -18,6 +18,6 @@ router.route('/sign-up')
 
 router.route('/sign-in')
   .get(renders.signInPage)
-  .post(authenticate.LocalStrategy)
+  .post(authenticates.LocalStrategy)
 
 module.exports = router

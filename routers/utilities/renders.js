@@ -4,16 +4,14 @@ const getUsersTable = require('../../domain/users')
 
 const renders = {}
 
-renders.signUpPage = (req, res) => {
-  res.render('sign-up', { 
-    errorSignUp: req.flash('errorSignUp')
-  })
+renders.signUpPage = (req, res) => { 
+  res.render('sign-up') 
 }
 
-renders.signInPage = (req, res) => {
-  res.render('sign-in', { 
-    errorLogin: req.flash('errorLogin') 
-  })
+renders.signInPage = (req, res) => { 
+  req.user
+  ? res.redirect(`/users/${req.user.id}`)
+  : res.render('sign-in')
 }
 
 renders.homePage = (req, res, next) => {
@@ -23,7 +21,7 @@ renders.homePage = (req, res, next) => {
     .then( users => {
       getReviewsTable.byLatestThree()
       .then( reviews => {
-        res.render('index', {albums, reviews, users})
+        res.render('index', { albums, reviews, users })
       })
     })
   }).catch(next)
@@ -37,7 +35,7 @@ renders.albumsPage = (req, res, next) => {
     .then( users => {
       getReviewsTable.byAlbumID(req.params.id)
       .then( reviews => {
-        res.render('albums', { albums, reviews, users })
+        res.render('album-info', { albums, reviews, users })
       })
     })
   }).catch(next)

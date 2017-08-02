@@ -2,11 +2,11 @@
 
 <div class="list-albums">
   <% albums.forEach(function(album) { %>
-
     <div>
-      <h4><a href="/albums/<%= album.id %>"><%= album.title %></a></h4>
-      <span><%= album.artist %></span>
+      <h4 style="text-decoration: underline">
+      	<a href="/albums/<%= album.id %>"><%= album.title %></a>
+      </h4>
+      <h5><%= album.artist %></h5>
     </div>
-
   <% }) %>
 </div>

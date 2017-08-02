@@ -8,12 +8,12 @@ const deletes = {}
 const adds = {}
 
 authenticates.LocalStrategy = passport.authenticate('local', {
-  successRedirect: '/',
+  successRedirect: '/sign-in',
   failureRedirect: '/sign-in',
   failureFlash: true
 })
 
-adds.newUser = (req, res) => {
+adds.newUser = (req, res, next) => {
   const {name, email, password} = req.body
   getUsersTable.byEmail(email)
   .then(foundEmail => {
@@ -23,13 +23,14 @@ adds.newUser = (req, res) => {
     } else {
       getUsersTable.toAdd(name, email, password, '/img/no-dj.png')
       .then(addedUsers => { res.redirect('/sign-in') })
+      .catch(next)
     }
   })
 }
 
 adds.newReview = (req, res, next) => {
   ! req.user
-  ? res.redirect('/sign-in')
+  ? res.redirect('/sign-up')
   : getReviewsTable.toAdd(
     req.user.id, 
     req.params.id, 
@@ -39,15 +40,10 @@ adds.newReview = (req, res, next) => {
   }).catch(next)
 } 
 
-deletes.review = (req, res, next) => {
+deletes.review = (req, res) => {
   ! req.user
-  ? res.redirect('/sign-in')
+  ? res.redirect('/sign-up')
   : getReviewsTable.toDelete(req.params.id)
-  .then( deletedReview => {
-    if(deletedReview) {
-    res.redirect(`/users/${req.user.id}`)
-    }
-  }).catch(next)
 }
 
 

@@ -4,9 +4,9 @@ const connectionString = process.env.DATABASE_URL || `postgres://localhost:5432/
 const db = pgp(connectionString)
 
 module.exports = class DataBaseGenericTableFunctions {
-  constructor(tableName, columnsForAdding) {
+  constructor(tableName, columnsForThePurposeOfAddingToTheTableAsAnArray) {
     this.table = tableName
-    this.columns = columnsForAdding
+    this.columns = columnsForThePurposeOfAddingToTheTableAsAnArray
   }
 
   generate_$1$2etc() {
@@ -14,10 +14,10 @@ module.exports = class DataBaseGenericTableFunctions {
     for (let i = 1; i <= this.columns.length; i++) {
       colmns.push('$'+ i)
     }
-    return col.join()
+    return colmns.join()
   } 
 
-  addRow(valuesAsArray) {
+  addRow(valuesAsAnArray) {
     return db.any(`
       INSERT INTO 
         ${this.table} 
@@ -25,18 +25,16 @@ module.exports = class DataBaseGenericTableFunctions {
       VALUES 
         (${this.generate_$1$2etc()})
       RETURNING 
-        *`, valuesAsArray
+        *`, valuesAsAnArray
     )
   }
   
   deleteByColumn(column, value) {
-    return db.any(`
+    return db.none(`
       DELETE FROM 
         ${this.table} 
       WHERE 
-        ${column} = $1
-      RETURNING 
-        *`, value
+        ${column} = $1`, value
     )
   }
 

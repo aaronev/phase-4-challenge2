@@ -27,7 +27,7 @@ function hideAddForm() {
 }
 
 function confirmDelete(reviewID) {
-  if (confirm("Are you sure you want to delete?")) {
+  if (confirm("Are you sure you want to delete this review?")) {
     fetch("/reviews/"+reviewID, {
       method: "DELETE", 
       credentials: "include"
