@@ -6,11 +6,11 @@ router.route('/')
     req.user
     ? res.redirect(`/users/${req.user.id}`)
     : res.render('sign-in')
-})
+  })
   .post(passport.authenticate('local', {
     successRedirect: '/sign-in',
     failureRedirect: '/sign-in',
     failureFlash: true
-}))
+  }))
 
 module.exports = router

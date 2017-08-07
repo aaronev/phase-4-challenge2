@@ -3,8 +3,7 @@ const getAlbumsTable = require('../../domain/albums')
 const getReviewsTable = require('../../domain/reviews')
 const getUsersTable = require('../../domain/users')
 
-router.route('/:id')
-  .get((req, res, next) => {
+router.get('/:id', (req, res, next) => {
     getAlbumsTable.byID(req.params.id)
     .then( albums => {
       console.log(albums[0], 'albums')
@@ -20,7 +19,8 @@ router.route('/:id')
       })
     }).catch(next)
   })
-  .post((req, res, next) => {
+
+router.post('/:id/reviews', (req, res, next) => {
   ! req.user
   ? res.redirect('/sign-up')
   : getReviewsTable.toAdd(
