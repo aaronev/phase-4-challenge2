@@ -77,4 +77,25 @@ module.exports = class DataBaseGenericTableFunctions {
       `, limit
     )
   }
+  searchForTableInformation(searchQuery, column) {
+    return db.any(`
+      SELECT 
+        LOWER(${column})
+      FROM
+        ${this.table}
+      WHERE 
+        ${column}
+      LIKE 
+        $1 
+      ` [`%${searchQuery.toLowerCase()}%`]
+    )
+  } 
 }
+
+
+
+
+
+
+
+

@@ -2,6 +2,12 @@
 
 A community for record enthusiasts to review their favorite albums.
 
+new featuer:
+search
+enter a query 
+case insensitive search
+returns information from the data base
+
 ## Getting Started
 
 ### Set Up Database

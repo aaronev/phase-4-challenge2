@@ -24,11 +24,6 @@ app.use((req, res, next) => {
 
 app.use('/', require('./routers'))
 
-app.use('/sign-out', (req, res) => { 
-  req.logout()
-  res.redirect('/') 
-})
-
 app.use((req, res) => { 
   res.render('./errors/not-found') 
 })

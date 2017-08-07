@@ -199,20 +199,13 @@ body {
   overflow: hidden;
 }
 
-.profile-page-albums,
 .profile-page-reviews {
   position: relative;
   top: 10px;
   overflow-y: scroll;
   height: 450px;
-}
-
-.profile-page-albums {
-  width: 50%;
-}
-
-.profile-page-reviews {
   width: 80%;
+  float: right;
 }
 
 .not-found-page {

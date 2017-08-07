@@ -1,23 +1,15 @@
 const router = require('express').Router()
-const renders = require('./utilities/renders')
-const { authenticates, adds, deletes } = require('./utilities/auth')
 
-router.get('/', renders.homePage)
-router.get('/users/:id', renders.usersPage)
+router.use('/', require('./routes/home'))
+router.use('/albums', require('./routes/albums'))
+router.use('/users', require('./routes/users'))
+router.use('/reviews', require('./routes/reviews'))
+router.use('/sign-up', require('./routes/sign-up'))
+router.use('/sign-in', require('./routes/sign-in'))
 
-router.route('/albums/:id')
-  .get(renders.albumsPage)
-  .post(adds.newReview)
-
-router.route('/reviews/:id')
-  .delete(deletes.review)
-
-router.route('/sign-up')
-  .get(renders.signUpPage)
-  .post(adds.newUser)
-
-router.route('/sign-in')
-  .get(renders.signInPage)
-  .post(authenticates.LocalStrategy)
+router.get('/sign-out', (req, res) => { 
+  req.logout()
+  res.redirect('/') 
+})
 
 module.exports = router
