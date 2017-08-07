@@ -9,10 +9,9 @@ const byID = (albumID) =>
   AlbumsTable.getRowsByColumn('id', albumID)
   .then(albums => albums)
 
-const toSearch = (searchQuery) => {
-	AlbumsTable.searchForTableInformation(searchQuery, 'title')
+const toSearch = (searchQuery) =>
+	AlbumsTable. searchRowsByColumn(searchQuery, 'title')
 	.then(foundTitle => foundTitle)
-}
 
 module.exports = {
   all,

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+
+<form method="post" action="/search">
+  <input name="searchQueries" type="text" require/>
+  <input type="submit">
+</form>
+
+<% if (foundQueries) { %>
+  <% foundQueries.forEach(function(query) { %>
+    <h3><%=query.title%></h3>
+  <% })%>
+<% } %>

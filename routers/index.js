@@ -6,6 +6,7 @@ router.use('/users', require('./routes/users'))
 router.use('/reviews', require('./routes/reviews'))
 router.use('/sign-up', require('./routes/sign-up'))
 router.use('/sign-in', require('./routes/sign-in'))
+router.use('/search', require('./routes/search'))
 
 router.get('/sign-out', (req, res) => { 
   req.logout()
