@@ -7,13 +7,13 @@ router.get('/:id', (req, res, next) => {
   getAlbumsTable.all()
   .then( albums => {
     getUsersTable.byID(req.params.id)
-    .then( users => {
-      ! users[0]
+    .then( user => {
+      ! user
       ? res.render('./errors/not-found')
       : getReviewsTable.byUserID(req.params.id)
       .then( reviews => {
         res.render('profile', {
-          albums, reviews, users
+          albums, reviews, users: [user], user
         })
       }).catch(next)
     }).catch(next)

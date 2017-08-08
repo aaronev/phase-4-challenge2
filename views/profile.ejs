@@ -4,19 +4,17 @@
 
 <div class="profile-page">
   <div class="profile-info">
-    <% users.forEach(function(user) { %>
-      <img class="float-right border" width="150" height="150" src=<%= user.image %> />
-      <div class="float-right text-left">
-        <h2><%= user.name %></h2>
-        <h4> Email: <%= user.email %> </h4>
-        <h5> Joined:  <%= user.timestamp %> </h5>
-      </div>
-    <% }) %>
+    <img class="float-right border" width="150" height="150" src=<%= user.image %> />
+    <div class="float-right text-left">
+      <h2><%= user.name %></h2>
+      <h4> Email: <%= user.email %> </h4>
+      <h5> Joined:  <%= user.timestamp %> </h5>
+     </div>
   </div>
 
     <div class="profile-page-reviews">
-      <h2>Reviews</h2>
-      <% include ./lists/reviews %>
+    <h2>Reviews</h2>
+    <% include ./lists/reviews %>
     </div>
   </div>
 </div>

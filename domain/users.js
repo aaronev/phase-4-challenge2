@@ -9,40 +9,22 @@ function encrypt(plainText) {
 
 const toVerifyPassword = (plainText, hashedText) =>
   bcrypt.compareSync(plainText, hashedText)
-  
-const all = () =>
- UsersTable.getAllRows()
-  .then(users => users)
-  .catch(error => {
-    console.log("Query ERROR: =>", error)
-    throw error
-  })
-  
-const byID = userID => 
- UsersTable.getRowsByColumn('id', userID)
-  .then(users => users)
-  .catch(error => {
-    console.log("Query ERROR: =>", error)
-    throw error
-  })
 
-const byEmail = value => 
-  UsersTable.getRowsByColumn('email', value)
-  .then(users => users[0])
-  .catch(error => {
-    console.log("Query ERROR: =>", error)
-    throw error
-  })
+const all = () =>
+  UsersTable.getAllRows()
+
+const byID = userID => 
+  UsersTable.getRowsByColumn('id', userID)
+  .then(foundUser => foundUser[0])
+
+const byEmail = email => 
+  UsersTable.getRowsByColumn('email', email)
+  .then(foundUser => foundUser[0])
 
 const toAdd = (name, email, password, img) =>
   UsersTable.addRow([
     name, email, encrypt(password), img
   ])
-  .then(users =>  users[0])
-  .catch(error => {
-    console.log("Query ERROR: =>", error)
-    throw error
-  })
 
 module.exports = {
   all,

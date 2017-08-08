@@ -3,27 +3,12 @@ const AlbumsTable = new DBTable('albums', ['title','artist'])
 
 const all = () => 
   AlbumsTable.getAllRows()
-  .then(albums => albums)
-  .catch(error => {
-    console.log("Query ERROR: =>", error)
-    throw error
-  })
 
 const byID = (albumID) =>
   AlbumsTable.getRowsByColumn('id', albumID)
-  .then(albums => albums)
-  .catch(error => {
-    console.log("Query ERROR: =>", error)
-    throw error
-  })
 
 const toSearch = (searchQuery) =>
-	AlbumsTable. searchRowsByColumn('title', searchQuery)
-	.then(foundTitle => foundTitle)
-  .catch(error => {
-    console.log("Query ERROR: =>", error)
-    throw error
-  })
+	AlbumsTable.searchRowsByColumn('title', 'artist',searchQuery)
 
 module.exports = {
   all,

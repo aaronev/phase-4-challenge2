@@ -9,6 +9,15 @@ module.exports = class DataBaseGenericTableFunctions {
     this.columns = columnsForThePurposeOfAddingToTheTableAsAnArray
   }
 
+  errorHandler(SQLCommand, queryParams) {
+    return db.any(SQLCommand, queryParams)
+    .then(queries => queries)
+    .catch(error => {
+      console.log('Queries ERROR: ===> ', error)
+      throw error
+    })
+  }
+
   generate_$1$2etc() {
     let colmns = []
     for (let i = 1; i <= this.columns.length; i++) {
@@ -18,7 +27,7 @@ module.exports = class DataBaseGenericTableFunctions {
   } 
 
   addRow(valuesAsAnArray) {
-    return db.any(`
+    return this.errorHandler(`
       INSERT INTO 
         ${this.table} 
         (${this.columns}) 
@@ -30,7 +39,7 @@ module.exports = class DataBaseGenericTableFunctions {
   }
   
   deleteByColumn(column, value) {
-    return db.none(`
+    return this.errorHandler(`
       DELETE FROM 
         ${this.table} 
       WHERE 
@@ -39,7 +48,7 @@ module.exports = class DataBaseGenericTableFunctions {
   }
 
   getAllRows() {
-    return db.any(`
+    return this.errorHandler(`
       SELECT 
         * 
       FROM 
@@ -50,22 +59,22 @@ module.exports = class DataBaseGenericTableFunctions {
     )
   }
 
- getRowsByColumn(column, value) { 
-  return db.any(`
-    SELECT 
-      * 
-    FROM 
-      ${this.table} 
-    WHERE 
-      ${column} = $1
-    ORDER BY 
-      timestamp
-    DESC`, value
+  getRowsByColumn(column, value) { 
+    return this.errorHandler(`
+      SELECT 
+        * 
+      FROM 
+        ${this.table} 
+      WHERE 
+        ${column} = $1
+      ORDER BY 
+        timestamp
+      DESC`, value
     )
   }
 
   getRowsByLimit(limit) {
-    return db.any(`
+    return this.errorHandler(`
       SELECT 
         * 
       FROM 
@@ -78,14 +87,14 @@ module.exports = class DataBaseGenericTableFunctions {
     )
   }
 
-  searchRowsByColumn(column, searchQuery) {
-    return db.any(`
+  searchRowsByColumn(col1, col2, searchQuery) {
+    return this.errorHandler(`
       SELECT
         *
       FROM
         ${this.table}
       WHERE
-        lower(${column}) 
+        lower(${col1} || ${col2})
       LIKE 
         $1
       `, `%${searchQuery.toLowerCase()}%`

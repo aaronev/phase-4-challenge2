@@ -2,13 +2,13 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const getUsersTable = require('../domain/users')
 
-passport.serializeUser((users, done) => { 
-  done(null, users.id) 
+passport.serializeUser((user, done) => { 
+  done(null, user.id) 
 })
 
 passport.deserializeUser((id, done) => {
   getUsersTable.byID(id)
-    .then(users => done(null, users[0])) 
+  .then(users => done(null, users)) 
 })
 
 passport.use('local', new LocalStrategy({
@@ -19,6 +19,7 @@ passport.use('local', new LocalStrategy({
   (req, email, plainTextPassword, done) => {
     getUsersTable.byEmail(email)
     .then(user => {
+      console.log('getting user email authentication', user)
       if (!user) {
         return done(null, false, req.flash(
           'errorLogin', 
