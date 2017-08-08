@@ -213,3 +213,10 @@ body {
   top: 50px;
   height: 800px;
 }
+
+.error-page {
+  text-align: left;
+  padding: 50px;
+  background-color: white;
+  overflow: scroll;
+}

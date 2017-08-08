@@ -19,7 +19,6 @@ passport.use('local', new LocalStrategy({
   (req, email, plainTextPassword, done) => {
     getUsersTable.byEmail(email)
     .then(user => {
-      console.log('getting user email authentication', user)
       if (!user) {
         return done(null, false, req.flash(
           'errorLogin', 
