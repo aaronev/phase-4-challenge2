@@ -78,10 +78,10 @@ module.exports = class DataBaseGenericTableFunctions {
     )
   }
 
-  searchRowsByColumn(searchQuery, column) {
+  searchRowsByColumn(column, searchQuery) {
     return db.any(`
       SELECT
-        ${column}
+        *
       FROM
         ${this.table}
       WHERE

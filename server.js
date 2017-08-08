@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 app.use('/', require('./routers'))
 
 app.use((err, req, res, next) => {
-  res.render('./errors/error', {error: err})
+  res.status(500).render('./errors/error', {error: err})
 })
 
 app.use((req, res) => { 

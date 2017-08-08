@@ -9,7 +9,7 @@
     <p class="red"><%= errorLogin %></p>
   <% } %>
   
-  <form action="/sign-in" method="post">
+  <form action="/authenticate/sign-in" method="post">
     <input type="email" name = "email" placeholder="Email Address" required/>
     <br><input type="password" name = "password" placeholder="Password" required/> 
     <br><input class="right" type="submit" value="Log In"/>
