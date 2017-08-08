@@ -1,10 +1,11 @@
 const router = require('express').Router()
 const getReviewsTable = require('../../domain/reviews')
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res, next) => {
   ! req.user
-  ? res.redirect('/sign-up')
+  ? res.redirect('/authenticate/sign-up')
   : getReviewsTable.toDelete(req.params.id)
+    .catch(next)
 })
 
 module.exports = router

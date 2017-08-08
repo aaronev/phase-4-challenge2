@@ -11,8 +11,8 @@ router.get('/', (req, res, next) => {
       getReviewsTable.byLatestThree()
       .then( reviews => {
         res.render('index', { albums, reviews, users })
-      })
-    })
+      }).catch(next)
+    }).catch(next)
   }).catch(next)
 })
 

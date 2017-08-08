@@ -15,8 +15,8 @@ router.get('/:id', (req, res, next) => {
         res.render('profile', {
           albums, reviews, users
         })
-      })
-    })
+      }).catch(next)
+    }).catch(next)
   }).catch(next)
 })
 
